@@ -14,7 +14,7 @@
  *   - 0–59   → "F"
  *
  * Rules:
- *   - Check validity FIRST: if the original score is less than 0
+ *  - Check validity FIRST: if the original score is less than 0
  *     or greater than 100, return "INVALID"
  *   - If hasExtraCredit is true, add 5 points AFTER validation
  *     (cap the result at 100)
@@ -26,4 +26,26 @@
  */
 export function calculateGrade(score, hasExtraCredit) {
   // Your code here
+  if(score<0 || score >= 101) return "INVALID";
+  // credit 5 marks & making sure that doesnot exceed 100 marks
+  if(hasExtraCredit){
+    score=score+5;
+    if(score>100) score=100;
+  }
+  if(score>=90){
+    return 'A';
+  }
+  else if(score>=80)  {
+return 'B';
+  }
+  else if(score>=70)  {
+return 'C';
+  }
+  else if(score>=60)  {
+return 'D';
+  }
+  else  {
+return 'F';
+  }
+  
 }

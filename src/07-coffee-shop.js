@@ -32,4 +32,27 @@
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
   // Your code here
+  
+  let total = 0;
+
+  // 1. Size price
+  if (size === "small") total += 3;
+  else if (size === "medium") total += 4;
+  else if (size === "large") total += 5;
+  else return -1; // invalid size
+
+  // 2. Coffee type price
+  if (type === "regular") total += 0;
+  else if (type === "latte") total += 1;
+  else if (type === "cappuccino") total += 1.5;
+  else if (type === "mocha") total += 2;
+  else return -1; // invalid type
+
+  // 3. Extras
+  if (extras.whippedCream) total += 0.5;
+  if (extras.extraShot) total += 0.75;
+
+  // 4. Round to 2 decimal places
+  return Number(total.toFixed(2));
 }
+
