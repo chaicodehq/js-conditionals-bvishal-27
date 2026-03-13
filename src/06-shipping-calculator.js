@@ -29,5 +29,36 @@
  * @returns {number} Shipping cost, 0 for free shipping, or -1 for invalid input
  */
 export function calculateShipping(weight, country, orderTotal) {
-  // Your code here
+  // 1. Validation: Weight must be positive, total cannot be negative
+  if (weight <= 0 || orderTotal < 0) {
+    return -1;
+  }
+
+  // 2. Free Shipping Rules
+  if (country === "US") {
+    if (orderTotal > 50) return 0;
+  } else {
+    if (orderTotal > 100) return 0;
+  }
+
+  // 3. Calculate Base Shipping Cost
+  if (country === "US") {
+    // Domestic Rates
+    if (weight <= 1) {
+      return 5;
+    } else if (weight <= 5) {
+      return 10;
+    } else {
+      return 15;
+    }
+  } else {
+    // International Rates
+    if (weight <= 1) {
+      return 15;
+    } else if (weight <= 5) {
+      return 25;
+    } else {
+      return 40;
+    }
+  }
 }

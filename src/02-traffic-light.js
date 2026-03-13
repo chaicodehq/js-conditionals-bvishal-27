@@ -22,5 +22,29 @@
  * @returns {string} The driving action to take
  */
 export function getTrafficAction(color) {
-  // Your code here
+  // 1. Validation: Ensure the input is a string
+  if (typeof color !== 'string') {
+    return "INVALID SIGNAL";
+  }
+
+  // 2. Normalization: Convert to lowercase for case-insensitivity
+  const signal = color.toLowerCase();
+
+  // 3. Switch statement to handle different signals
+  switch (signal) {
+    case "green":
+      return "GO";
+    
+    case "yellow":
+      return "SLOW DOWN";
+    
+    case "red":
+      return "STOP";
+    
+    case "flashing red":
+      return "STOP AND PROCEED WITH CAUTION";
+    
+    default:
+      return "INVALID SIGNAL";
+  }
 }

@@ -26,5 +26,31 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  // Your code here
+  // 1. Validation: No income, no tax!
+  if (income <= 0) {
+    return 0;
+  }
+
+  let totalTax = 0;
+
+  // 2. Bracket 2: $10,001 to $30,000 (10%)
+  if (income > 10000) {
+    // We only tax the portion within this range
+    const taxableAmount = Math.min(income, 30000) - 10000;
+    totalTax += taxableAmount * 0.10;
+  }
+
+  // 3. Bracket 3: $30,001 to $70,000 (20%)
+  if (income > 30000) {
+    const taxableAmount = Math.min(income, 70000) - 30000;
+    totalTax += taxableAmount * 0.20;
+  }
+
+  // 4. Bracket 4: Over $70,000 (30%)
+  if (income > 70000) {
+    const taxableAmount = income - 70000;
+    totalTax += taxableAmount * 0.30;
+  }
+
+  return totalTax;
 }

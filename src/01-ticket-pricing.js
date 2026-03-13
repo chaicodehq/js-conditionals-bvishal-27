@@ -23,5 +23,28 @@
  * @returns {number} The ticket price, or -1 for invalid input
  */
 export function getTicketPrice(age, isWeekend) {
-  // Your code here
+  // 1. Validation: Age must be a non-negative number
+  if (typeof age !== 'number' || isNaN(age) || age < 0) {
+    return -1;
+  }
+
+  let basePrice = 0;
+
+  // 2. Determine base price based on age group
+  if (age <= 12) {
+    basePrice = 8;     // Children
+  } else if (age <= 17) {
+    basePrice = 12;    // Teens
+  } else if (age <= 59) {
+    basePrice = 15;    // Adults
+  } else {
+    basePrice = 10;    // Seniors
+  }
+
+  // 3. Apply weekend surcharge
+  if (isWeekend) {
+    basePrice += 3;
+  }
+
+  return basePrice;
 }
